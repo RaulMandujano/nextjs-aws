@@ -1,0 +1,12 @@
+type CharacterData @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  birthday: String
+  occupation: String
+  img: String
+  status: String
+  nickname: String
+  appearance: String
+  portrayed: String
+  category: String
+}

@@ -13,6 +13,7 @@ import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 import { getAllCharacter } from "../../src/utils/api-utils"
 
 
+
 const CharactersList = (props) => {
 
 console.log(props);
