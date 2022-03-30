@@ -12,8 +12,7 @@ import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 
-import { getAllCharacter } from "../../src/utils/api-utils"
-// import { listCharacterData } from "../../src/graphql/queries"
+import { listCharacterData } from "../../src/graphql/queries"
 
 import * as mutations from "../../src/graphql/mutations"
 
@@ -21,7 +20,7 @@ import * as mutations from "../../src/graphql/mutations"
 Amplify.configure(config)
 
 
-const CharactersList = (props) => {
+const savedCharacter = (props) => {
 
   const handleSaveCharacter = async (currentCharacter) => {
     console.log(`Character saved`)
@@ -103,35 +102,26 @@ const CharactersList = (props) => {
 }
 
 
-// export async function getStaticProps() {
-    
-//   let characters = []
-//     try {
-//         const response = await API.graphql({
-//           query: listCharacterData,
-//           authMode: 'API_KEY'
-//         })
-//         characters = response.data.listCharacterData.items
-
-//       } catch (err) {
-//         console.log("Retrieve movie list error", err)
-//     }
-
-//     return {
-//         props: {
-//             characters: characters
-//         }
-//     }
-// }
-
 export async function getStaticProps() {
-    const fetchedCharacters = await getAllCharacter();
+    
+  let characters = []
+    try {
+        const response = await API.graphql({
+          query: listCharacterData,
+          authMode: 'API_KEY'
+        })
+        characters = response.data.listCharacterData.items
+
+      } catch (err) {
+        console.log("Retrieve movie list error", err)
+    }
 
     return {
         props: {
-            characters: fetchedCharacters
+            characters: characters
         }
     }
 }
 
-export default CharactersList
+
+export default savedCharacter
