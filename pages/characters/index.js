@@ -13,7 +13,7 @@ import Link from 'next/link'
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
-import ResponsiveAppBar from "../../src/Components/ResponsiveAppBar"
+import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 
 import { getAllCharacter } from "../../src/utils/api-utils"
 // import { listCharacterData } from "../../src/graphql/queries"
