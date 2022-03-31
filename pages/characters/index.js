@@ -7,6 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 
+import Button from '@mui/material/Button';
+import Link from 'next/link'
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
@@ -59,6 +62,11 @@ const CharactersList = (props) => {
   return (
     <div>
       <ResponsiveAppBar />
+
+      <Link href="/savedCharacter">
+      <Button variant="contained">Saved Characters</Button>
+      </Link>
+
       {
           characters.map((character, index) => {
 
