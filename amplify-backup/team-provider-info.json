@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-breakingbadproject-staging-20351-authRole",
+      "UnauthRoleArn": "arn:aws:iam::189276156472:role/amplify-breakingbadproject-staging-20351-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::189276156472:role/amplify-breakingbadproject-staging-20351-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-breakingbadproject-staging-20351-deployment",
+      "UnauthRoleName": "amplify-breakingbadproject-staging-20351-unauthRole",
+      "StackName": "amplify-breakingbadproject-staging-20351",
+      "StackId": "arn:aws:cloudformation:us-east-1:189276156472:stack/amplify-breakingbadproject-staging-20351/d8dc8a00-944c-11ec-b338-0e78e511eb1d",
+      "AmplifyAppId": "d2ik305rb9hyaw"
+    }
+  }
+}

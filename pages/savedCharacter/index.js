@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions } from '@mui/material';
+import { CardActionArea, CardActions, Grid } from '@mui/material';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
@@ -62,7 +62,12 @@ const savedCharacter = (props) => {
           characters.map((character, index) => {
 
             return (
-              <div key={index}>
+              <Grid key={index}
+              container
+              direction="row"
+              justifyContent="center"
+              sx={{ float: 'left', width: 300, height: 700, margin: 2, }}
+              >
                 <Card sx={{ maxWidth: 345 }}>
                     
                   <CardActionArea>
@@ -92,7 +97,7 @@ const savedCharacter = (props) => {
                   </CardActions>
 
                 </Card>
-              </div>
+              </Grid>
             )
           }
         )

@@ -1,17 +1,19 @@
-import { Amplify, API } from "aws-amplify"
+import { Amplify, API, formRow } from "aws-amplify"
 import config from "../../src/aws-exports"
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions } from '@mui/material';
+import { CardActionArea, CardActions, Grid } from '@mui/material';
 
 import Button from '@mui/material/Button';
 import Link from 'next/link'
 
-import DeleteIcon from '@mui/icons-material/Delete';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import ClearIcon from '@mui/icons-material/Clear';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
+
 
 import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 
@@ -25,6 +27,7 @@ Amplify.configure(config)
 
 
 const CharactersList = (props) => {
+  
 
   const handleSaveCharacter = async (currentCharacter) => {
     console.log(`Character saved`)
@@ -55,24 +58,30 @@ const CharactersList = (props) => {
   const handleDeleteCharacter = () => {
     console.log('Character Deleted')
   }
-  
-  console.log(props);
-  const { characters } = props
+  const [characters, setCharacters] = React.useState([...props.characters])
+  const onSearch = value => {
+    console.log(value)
+    fetch(`https://www.breakingbadapi.com/api/characters?name=${value}`)
+      .then(res => res.json())
+      .then(res => setCharacters(res))
+  }
 
   return (
     <div>
-      <ResponsiveAppBar />
+      <ResponsiveAppBar onSearch={onSearch} />
 
-      <Link href="/savedCharacter">
-      <Button variant="contained">Saved Characters</Button>
-      </Link>
 
       {
           characters.map((character, index) => {
 
             return (
-              <div key={index}>
-                <Card sx={{ maxWidth: 345 }}>
+              <Grid key={index}
+              container
+              direction="row"
+              justifyContent="center"
+              sx={{ float: 'left', width: 300, height: 700, margin: 2, }}
+              >
+                <Card>
                     
                   <CardActionArea>
                     <CardMedia
@@ -95,13 +104,17 @@ const CharactersList = (props) => {
                   </CardActionArea>
                   <CardActions>
 
-                    <SaveAltIcon size="small" color="primary" onClick={() => handleSaveCharacter(character)} />
-                    <DeleteIcon size="small" color="primary" onClick={handleDeleteCharacter} />
-
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon size="small" color="primary" onClick={() => handleSaveCharacter(character)} />
+                  </IconButton>
+                  <IconButton aria-label="add to favorites">
+                    <ClearIcon size="small" color="primary" onClick={handleDeleteCharacter} />
+                  </IconButton>
+                  
                   </CardActions>
 
                 </Card>
-              </div>
+              </Grid>
             )
           }
         )
@@ -132,14 +145,14 @@ const CharactersList = (props) => {
 //     }
 // }
 
-export async function getStaticProps() {
-    const fetchedCharacters = await getAllCharacter();
-
-    return {
-        props: {
-            characters: fetchedCharacters
-        }
+export const getStaticProps = async () => {
+  const characters = await (await fetch('https://www.breakingbadapi.com/api/characters')).json()
+  return {
+    props: {
+      characters
     }
+  }
 }
+
 
 export default CharactersList

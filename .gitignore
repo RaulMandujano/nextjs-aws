@@ -33,6 +33,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+
+# Local Netlify folder
+.netlify
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -53,6 +57,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-# Local Netlify folder
-.netlify
