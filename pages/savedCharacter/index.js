@@ -64,7 +64,7 @@ const savedCharacter = () => {
 
   return (
     <div>
-      <ResponsiveAppBar />
+
       {
           characterList && characterList.map((character, index) => {
 

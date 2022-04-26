@@ -1,7 +1,7 @@
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-
+import router from 'next/router';
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -46,10 +46,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Search = props => {
+    
     const onSearch = e => {
         e.preventDefault();
         const value = e.target.search.value;
-        props.onSearch && props.onSearch(value);
+        router.replace({query: `search=${value}`})
     }
     return (
         <SearchBox onSubmit={onSearch}>
@@ -57,6 +58,7 @@ const Search = props => {
                 <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+                defaultValue={router.query.search}
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
                 name='search'

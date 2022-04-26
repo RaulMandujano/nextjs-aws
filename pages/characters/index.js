@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Grid } from '@mui/material';
+import {useRouter} from 'next/router';
 
 // import Button from '@mui/material/Button';
 // import Link from 'next/link'
@@ -14,8 +15,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 
-
-import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 
 // import { getAllCharacter } from "../../src/utils/api-utils"
 // import { listCharacterData } from "../../src/graphql/queries"
@@ -59,16 +58,20 @@ const CharactersList = (props) => {
     console.log('Character Deleted')
   }
   const [characters, setCharacters] = React.useState([...props.characters])
-  const onSearch = value => {
-    console.log(value)
-    fetch(`https://www.breakingbadapi.com/api/characters?name=${value}`)
+  const router = useRouter();
+  const [isFirstTime, setIsFirstTime] = React.useState(true)
+  React.useEffect(() => {
+    if(isFirstTime) return setIsFirstTime(false);
+    const search = router.query.search
+    fetch(`https://www.breakingbadapi.com/api/characters${search ? `?name=${router.query.search}` : ''}`)
       .then(res => res.json())
       .then(res => setCharacters(res))
-  }
+  }, [router.query.search])
+
+  console.log(characters)
 
   return (
     <div>
-      <ResponsiveAppBar onSearch={onSearch} />
 
 
       {
@@ -145,8 +148,9 @@ const CharactersList = (props) => {
 //     }
 // }
 
-export const getStaticProps = async () => {
-  const characters = await (await fetch('https://www.breakingbadapi.com/api/characters')).json()
+export const getServerSideProps = async (context) => {
+  const search = context.query.search
+  const characters = await (await fetch(`https://www.breakingbadapi.com/api/characters${search ? '?search=${search}': ''}`)).json()
   return {
     props: {
       characters

@@ -113,7 +113,7 @@ const ResponsiveAppBar = (props) => {
             ))}
           </Box>
 
-          <Search onSearch={props.onSearch} />
+          <Search onSearch={props.onSearch} defaultValue={router.query} />
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -121,7 +121,7 @@ const ResponsiveAppBar = (props) => {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
+             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -137,7 +137,11 @@ const ResponsiveAppBar = (props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting, index) => (
+              {props.user ? (
+                <MenuItem>
+                  <Typography onClick={() => props.signOut()}>Sign Out</Typography>
+                </MenuItem>
+              ) : settings.map((setting, index) => (
                 <MenuItem key={index} onClick={() => router.push(setting.route)}>
                   <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
