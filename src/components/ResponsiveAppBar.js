@@ -18,7 +18,7 @@ import router from 'next/router'
 
 
 const pages = [{name: 'characters', route: '/characters'}, {name: 'Saved', route: '/savedCharacter'}];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [{name: 'Login', route: '/login'}, {name: 'Signup', route: '/signup'}];
 
 const ResponsiveAppBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,16 +43,19 @@ const ResponsiveAppBar = (props) => {
     <>
 
     <AppBar position="static" style={{background: 'darkgreen'}}>
+
+<img src="/breakingbad.png" style={{width: 230, margin: 'auto'}} />
+
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             BREAKING BAD
-          </Typography>
+          </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -134,9 +137,9 @@ const ResponsiveAppBar = (props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map((setting, index) => (
+                <MenuItem key={index} onClick={() => router.push(setting.route)}>
+                  <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>

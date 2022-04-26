@@ -7,8 +7,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Grid } from '@mui/material';
 
-import Button from '@mui/material/Button';
-import Link from 'next/link'
+// import Button from '@mui/material/Button';
+// import Link from 'next/link'
 
 import ClearIcon from '@mui/icons-material/Clear';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -17,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 
 import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 
-import { getAllCharacter } from "../../src/utils/api-utils"
+// import { getAllCharacter } from "../../src/utils/api-utils"
 // import { listCharacterData } from "../../src/graphql/queries"
 
 import * as mutations from "../../src/graphql/mutations"

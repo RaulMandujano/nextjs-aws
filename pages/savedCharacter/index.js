@@ -1,5 +1,8 @@
-import { Amplify, API } from "aws-amplify"
+import { Amplify, API, DataStore } from "aws-amplify"
 import config from "../../src/aws-exports"
+import { CharacterData } from '../../src/models'
+import useSWR from "swr"
+
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,59 +10,63 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Grid } from '@mui/material';
 
-import DeleteIcon from '@mui/icons-material/Delete';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import ClearIcon from '@mui/icons-material/Clear';
+import IconButton from '@mui/material/IconButton';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 
-import { listCharacterData } from "../../src/graphql/queries"
+// import { listCharacterData } from "../../src/graphql/queries"
 
-import * as mutations from "../../src/graphql/mutations"
+// import * as mutations from "../../src/graphql/mutations"
 
 
 Amplify.configure(config)
 
 
-const savedCharacter = (props) => {
+const savedCharacter = () => {
 
-  const handleSaveCharacter = async (currentCharacter) => {
-    console.log(`Character saved`)
+  const [characterList, setCharacterList] = React.useState([])
 
-    const CreateCharacterDataInput = {
-      name: currentCharacter.name,
-      birthday: currentCharacter.birthday,
-      occupation: currentCharacter.occupation,
-      img: currentCharacter.img,
-      status: currentCharacter.status,
-      nickname: currentCharacter.nickname,
-      appearance: currentCharacter.appearance,
-    }
 
+
+  const handleDeleteCharacter = async (character) => {
     try {
-      const response = await API.graphql({
-        query: mutations.createCharacterData,
-        variables: { input: CreateCharacterDataInput },
-        authMode: 'API_KEY'
-      })
-      console.log("New Character Saved")
-      console.log(response)
+      const characterToDelete = await DataStore.query(CharacterData, character.id)
+      
+      console.log(characterToDelete)
+      await DataStore.delete(characterToDelete)
     } catch (err) {
-      console.log("Save character Error", err)
+      console.log("Save delete movie error: ", err)
     }
+    }
+
+
+  
+  // console.log(props);
+  // const { characters } = props
+
+  const fetcher = async () => {
+    try {
+      let tempList = await DataStore.query(CharacterData)
+      setCharacterList(tempList)
+    } catch (err) {
+      console.log('Retrieve movie list error', err)
+    }
+    return characterList
   }
 
-  const handleDeleteCharacter = () => {
-    console.log('Character Deleted')
-  }
-  
-  console.log(props);
-  const { characters } = props
+  const { data, error } = useSWR('/movies', fetcher, {refreshInterval: 500
+  })
+
+  if (error) return <div>Failed to load list of movies.</div>
+  if (!data) return <div>Loading...</div>
 
   return (
     <div>
       <ResponsiveAppBar />
       {
-          characters.map((character, index) => {
+          characterList && characterList.map((character, index) => {
 
             return (
               <Grid key={index}
@@ -91,8 +98,13 @@ const savedCharacter = (props) => {
                   </CardActionArea>
                   <CardActions>
 
-                    <SaveAltIcon size="small" color="primary" onClick={() => handleSaveCharacter(character)} />
-                    <DeleteIcon size="small" color="primary" onClick={handleDeleteCharacter} />
+                    {/* <IconButton aria-label="add to favorites" onClick={() => handleSaveCharacter(character)}>
+                    <FavoriteIcon size="small" color="primary" />
+                    </IconButton> */}
+
+                    <IconButton aria-label="add to favorites"onClick={() => handleDeleteCharacter(character)} >
+                    <ClearIcon size="small" color="primary"  />
+                    </IconButton>
 
                   </CardActions>
 
@@ -107,26 +119,26 @@ const savedCharacter = (props) => {
 }
 
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
     
-  let characters = []
-    try {
-        const response = await API.graphql({
-          query: listCharacterData,
-          authMode: 'API_KEY'
-        })
-        characters = response.data.listCharacterData.items
+//   let characters = []
+//     try {
+//         const response = await API.graphql({
+//           query: listCharacterData,
+//           authMode: 'API_KEY'
+//         })
+//         characters = response.data.listCharacterData.items
 
-      } catch (err) {
-        console.log("Retrieve movie list error", err)
-    }
+//       } catch (err) {
+//         console.log("Retrieve movie list error", err)
+//     }
 
-    return {
-        props: {
-            characters: characters
-        }
-    }
-}
+//     return {
+//         props: {
+//             characters: characters
+//         }
+//     }
+// }
 
 
 export default savedCharacter

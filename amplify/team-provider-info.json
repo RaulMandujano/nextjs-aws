@@ -10,6 +10,11 @@
       "StackName": "amplify-breakingbadproject-staging-20351",
       "StackId": "arn:aws:cloudformation:us-east-1:189276156472:stack/amplify-breakingbadproject-staging-20351/d8dc8a00-944c-11ec-b338-0e78e511eb1d",
       "AmplifyAppId": "d2ik305rb9hyaw"
+    },
+    "categories": {
+      "auth": {
+        "breakingbadproject9b5a7c50": {}
+      }
     }
   }
 }
