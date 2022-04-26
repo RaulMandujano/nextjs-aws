@@ -1,4 +1,4 @@
-import { Amplify, API, DataStore } from "aws-amplify"
+import { Amplify, DataStore } from "aws-amplify"
 import config from "../../src/aws-exports"
 import { CharacterData } from '../../src/models'
 import useSWR from "swr"
@@ -24,7 +24,7 @@ import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
 Amplify.configure(config)
 
 
-const savedCharacter = () => {
+const SavedCharacter = () => {
 
   const [characterList, setCharacterList] = React.useState([])
 
@@ -141,4 +141,4 @@ const savedCharacter = () => {
 // }
 
 
-export default savedCharacter
+export default SavedCharacter
