@@ -57,7 +57,7 @@ const CharactersList = (props) => {
   const handleDeleteCharacter = () => {
     console.log('Character Deleted')
   }
-  const [characters, setCharacters] = React.useState([...props.characters])
+  const [characters, setCharacters] = React.useState([])
   const router = useRouter();
   const [isFirstTime, setIsFirstTime] = React.useState(true)
   React.useEffect(() => {
@@ -148,15 +148,15 @@ const CharactersList = (props) => {
 //     }
 // }
 
-export const getServerSideProps = async (context) => {
-  const search = context.query.search
-  const characters = await (await fetch(`https://www.breakingbadapi.com/api/characters${search ? '?search=${search}': ''}`)).json()
-  return {
-    props: {
-      characters
-    }
-  }
-}
+// export const getServerSideProps = async (context) => {
+//   const search = context.query.search
+//   const characters = await (await fetch(`https://www.breakingbadapi.com/api/characters${search ? '?search=${search}': ''}`)).json()
+//   return {
+//     props: {
+//       characters
+//     }
+//   }
+// }
 
 
 export default CharactersList
