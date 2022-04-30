@@ -1,6 +1,9 @@
-import { Amplify, API, formRow } from "aws-amplify"
-import config from "../../src/aws-exports"
+import { Amplify, DataStore, API } from "aws-amplify";
+import config from "../../src/aws-exports";
+import { CharacterData } from '../../src/models';
 import * as React from 'react';
+
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,16 +11,11 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Grid } from '@mui/material';
 import {useRouter} from 'next/router';
 
-// import Button from '@mui/material/Button';
-// import Link from 'next/link'
 
 import ClearIcon from '@mui/icons-material/Clear';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-
-// import { getAllCharacter } from "../../src/utils/api-utils"
-// import { listCharacterData } from "../../src/graphql/queries"
 
 import * as mutations from "../../src/graphql/mutations"
 
@@ -25,20 +23,20 @@ import * as mutations from "../../src/graphql/mutations"
 Amplify.configure(config)
 
 
-const CharactersList = (props) => {
+const CharactersList = () => {
   
 
-  const handleSaveCharacter = async (currentCharacter) => {
+  const handleSaveCharacter = async (characters) => {
     console.log(`Character saved`)
 
     const CreateCharacterDataInput = {
-      name: currentCharacter.name,
-      birthday: currentCharacter.birthday,
-      occupation: currentCharacter.occupation,
-      img: currentCharacter.img,
-      status: currentCharacter.status,
-      nickname: currentCharacter.nickname,
-      appearance: currentCharacter.appearance,
+      name: characters.name,
+      birthday: characters.birthday,
+      occupation: characters.occupation,
+      img: characters.img,
+      status: characters.status,
+      nickname: characters.nickname,
+      appearance: characters.appearance,
     }
 
     try {
@@ -52,21 +50,26 @@ const CharactersList = (props) => {
     } catch (err) {
       console.log("Save character Error", err)
     }
+
   }
+
+  //Fetching Data
 
   const handleDeleteCharacter = () => {
     console.log('Character Deleted')
   }
+
   const [characters, setCharacters] = React.useState([])
-  const router = useRouter();
-  const [isFirstTime, setIsFirstTime] = React.useState(true)
-  React.useEffect(() => {
-    if(isFirstTime) return setIsFirstTime(false);
-    const search = router.query.search
-    fetch(`https://www.breakingbadapi.com/api/characters${search ? `?name=${router.query.search}` : ''}`)
-      .then(res => res.json())
-      .then(res => setCharacters(res))
-  }, [router.query.search])
+
+  React.useEffect (() => {
+    loadData();
+  }, []);
+
+  const loadData = () =>  {
+    fetch("https://www.breakingbadapi.com/api/characters")
+    .then(response => response.json())
+    .then(receivedData => setCharacters(receivedData))
+  }
 
   console.log(characters)
 
@@ -75,7 +78,7 @@ const CharactersList = (props) => {
 
 
       {
-          characters.map((character, index) => {
+          characters && characters.map((character, index) => {
 
             return (
               <Grid key={index}
@@ -125,38 +128,6 @@ const CharactersList = (props) => {
     </div>
   );
 }
-
-
-// export async function getStaticProps() {
-    
-//   let characters = []
-//     try {
-//         const response = await API.graphql({
-//           query: listCharacterData,
-//           authMode: 'API_KEY'
-//         })
-//         characters = response.data.listCharacterData.items
-
-//       } catch (err) {
-//         console.log("Retrieve movie list error", err)
-//     }
-
-//     return {
-//         props: {
-//             characters: characters
-//         }
-//     }
-// }
-
-// export const getServerSideProps = async (context) => {
-//   const search = context.query.search
-//   const characters = await (await fetch(`https://www.breakingbadapi.com/api/characters${search ? '?search=${search}': ''}`)).json()
-//   return {
-//     props: {
-//       characters
-//     }
-//   }
-// }
 
 
 export default CharactersList

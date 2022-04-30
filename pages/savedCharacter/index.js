@@ -12,13 +12,6 @@ import { CardActionArea, CardActions, Grid } from '@mui/material';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
-
-import ResponsiveAppBar from "../../src/components/ResponsiveAppBar"
-
-// import { listCharacterData } from "../../src/graphql/queries"
-
-// import * as mutations from "../../src/graphql/mutations"
 
 
 Amplify.configure(config)
@@ -56,7 +49,7 @@ const SavedCharacter = () => {
     return characterList
   }
 
-  const { data, error } = useSWR('/movies', fetcher, {refreshInterval: 500
+  const { data, error } = useSWR('/savedCharacter', fetcher, {refreshInterval: 500
   })
 
   if (error) return <div>Failed to load list of movies.</div>
