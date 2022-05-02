@@ -85,13 +85,13 @@ const CharactersList = () => {
             return (
 
             <Box sx={{ display: "inline", margin: "auto" }}>
-              <Grid key={index}
+              <Grid
               container
               direction="row"
               justifyContent="center"
               sx={{ float: 'left', width: 300, height: 700, margin: 2 }}
               >
-                <Card>
+                <Card key={index}>
                     
                   <CardActionArea>
                     <CardMedia
