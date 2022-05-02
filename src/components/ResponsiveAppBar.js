@@ -87,8 +87,8 @@ const ResponsiveAppBar = (props) => {
               }}
             >
               {pages.map((page, index) => (
-                <MenuItem onClick={() => router.push(page.route)}>
-                  <Typography key={index} textAlign="center">{page.name}</Typography>
+                <MenuItem  key={index} onClick={() => router.push(page.route)}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
