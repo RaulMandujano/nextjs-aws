@@ -85,17 +85,18 @@ const CharactersList = () => {
             return (
 
             <Box sx={{ display: "inline", margin: "auto" }}>
-              <Grid
+              <Grid key={index}
               container
               direction="row"
               justifyContent="center"
               sx={{ float: 'left', width: 300, height: 700, margin: 2 }}
               >
-                <Card key={index}>
+                <Card>
                     
                   <CardActionArea>
                     <CardMedia
                       component="img"
+                      title="Profile Image"
                       height="450"
                       image={random.img}
                       alt="Breking Bad Character"
@@ -114,11 +115,11 @@ const CharactersList = () => {
                   </CardActionArea>
                   <CardActions>
 
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon size="small" color="primary" onClick={() => handleSaveCharacter(random)} />
+                  <IconButton aria-label="add to favorites" onClick={() => handleSaveCharacter(random)} >
+                    <FavoriteIcon size="small" color="primary" />
                   </IconButton>
-                  <IconButton aria-label="add to favorites">
-                    <ClearIcon size="small" color="primary" onClick={handleDeleteCharacter} />
+                  <IconButton aria-label="add to favorites" onClick={handleDeleteCharacter} >
+                    <ClearIcon size="small" color="primary" />
                   </IconButton>
                   
                   </CardActions>

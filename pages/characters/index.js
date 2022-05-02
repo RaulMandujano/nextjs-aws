@@ -83,10 +83,10 @@ const CharactersList = () => {
 
 
       {
-          characters && characters.map((character) => {
+          characters && characters.map((character, index) => {
 
             return (
-              <Grid
+              <Grid key={index}
               container
               direction="row"
               justifyContent="center"
@@ -115,11 +115,11 @@ const CharactersList = () => {
                   </CardActionArea>
                   <CardActions>
 
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon size="small" color="primary" onClick={() => handleSaveCharacter(character)} />
+                  <IconButton aria-label="add to favorites" onClick={() => handleSaveCharacter(character)} >
+                    <FavoriteIcon size="small" color="primary" />
                   </IconButton>
-                  <IconButton aria-label="add to favorites">
-                    <ClearIcon size="small" color="primary" onClick={handleDeleteCharacter} />
+                  <IconButton aria-label="add to favorites" onClick={handleDeleteCharacter}>
+                    <ClearIcon size="small" color="primary" />
                   </IconButton>
                   
                   </CardActions>
