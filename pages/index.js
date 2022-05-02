@@ -1,10 +1,9 @@
-import RandomCharacter from '.././src/components/RandomCharacter';
 
 export default function Home() {
   return (
 
     <div>
-<RandomCharacter />
+      <h1>Hello Peter</h1>
     </div>
   )
 }
