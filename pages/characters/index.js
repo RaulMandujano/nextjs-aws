@@ -64,17 +64,17 @@ const CharactersList = () => {
   const search = useRouter().query.search
 
   React.useEffect (() => {
+    const loadData = () =>  {
+      const url = `https://www.breakingbadapi.com/api/characters${search ? `?name=${search}` : ''}`;
+      console.log(url)
+      fetch(url)
+      .then(response => response.json())
+      .then(receivedData => setCharacters(receivedData))
+    }
     loadData();
     console.log(search);
-  }, [search, loadData]);
+  }, [search]);
 
-  const loadData = () =>  {
-    const url = `https://www.breakingbadapi.com/api/characters${search ? `?name=${search}` : ''}`;
-    console.log(url)
-    fetch(url)
-    .then(response => response.json())
-    .then(receivedData => setCharacters(receivedData))
-  }
 
   console.log(characters)
 
