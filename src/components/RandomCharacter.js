@@ -84,8 +84,8 @@ const CharactersList = () => {
 
             return (
 
-            <Box sx={{ display: "inline", margin: "auto" }}>
-              <Grid key={random.char_id}
+              <Box key={random.char_id} sx={{ display: "inline", margin: "auto" }}>
+              <Grid 
               container
               direction="row"
               justifyContent="center"
