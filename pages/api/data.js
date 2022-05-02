@@ -10,8 +10,6 @@
 export default async function handler(req, res) {
     if (req.method === 'POST') {
   
-
-  
       const response = await fetch(
         `https://www.breakingbadapi.com/api/characters`
       )

@@ -17,7 +17,7 @@ import router from 'next/router'
 
 
 
-const pages = [{name: 'characters', route: '/characters'}, {name: 'Saved', route: '/savedCharacter'}];
+const pages = [{name: 'characters', route: '/characters'}, {name: 'Saved', route: '/savedCharacter'}, {name: 'Series', route: '/series'}];
 const settings = [{name: 'Login', route: '/login'}, {name: 'Signup', route: '/signup'}];
 
 const ResponsiveAppBar = (props) => {

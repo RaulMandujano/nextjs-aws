@@ -1,6 +1,5 @@
 import { Amplify, DataStore, API } from "aws-amplify";
 import config from "../../src/aws-exports";
-import { CharacterData } from '../../src/models';
 import * as React from 'react';
 
 
@@ -9,16 +8,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Grid } from '@mui/material';
-import {useRouter} from 'next/router';
 
 
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Box from '@mui/material/Box';
 
 
 import * as mutations from "../../src/graphql/mutations"
-import { VolunteerActivismOutlined } from "@mui/icons-material";
 
 
 Amplify.configure(config)
@@ -54,43 +52,44 @@ const CharactersList = () => {
 
   }
 
-  //Fetching Data
-
+  
   const handleDeleteCharacter = () => {
     console.log('Character Deleted')
   }
-
-  const [characters, setCharacters] = React.useState([])
-  const search = useRouter().query.search
+  //Fetching Data
+  
+  const [randomCharacter, setRandomCharacter] = React.useState([])
 
   React.useEffect (() => {
-    loadData();
-    console.log(search);
-  }, [search]);
+    randomData();
+  }, []);
 
-  const loadData = () =>  {
-    const url = `https://www.breakingbadapi.com/api/characters${search ? `?name=${search}` : ''}`;
-    console.log(url)
-    fetch(url)
+  const randomData = () =>  {
+    fetch("https://www.breakingbadapi.com/api/characters?limit=6&offset=6")
     .then(response => response.json())
-    .then(receivedData => setCharacters(receivedData))
+    .then(randomReceivedData => setRandomCharacter(randomReceivedData))
   }
 
-  console.log(characters)
+  console.log(randomCharacter)
 
   return (
     <div>
 
+    <Typography variant="h4">
+        Random  Characters
+    </Typography>
 
       {
-          characters && characters.map((character, index) => {
+        randomCharacter && randomCharacter.map((random, index) => {
 
             return (
+
+            <Box sx={{ display: "inline", margin: "auto" }}>
               <Grid key={index}
               container
               direction="row"
               justifyContent="center"
-              sx={{ float: 'left', width: 300, height: 700, margin: 2, }}
+              sx={{ float: 'left', width: 300, height: 700, margin: 2 }}
               >
                 <Card>
                     
@@ -98,25 +97,25 @@ const CharactersList = () => {
                     <CardMedia
                       component="img"
                       height="450"
-                      image={character.img}
+                      image={random.img}
                       alt="Breking Bad Character"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h4" component="div">
-                        {character.nickname}
+                        {random.nickname}
                       </Typography>
                       <Typography gutterBottom variant="h6" component="div">
-                        {character.name}
+                        {random.name}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Occupation: {character.occupation}
+                        Occupation: {random.occupation}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
 
                   <IconButton aria-label="add to favorites">
-                    <FavoriteIcon size="small" color="primary" onClick={() => handleSaveCharacter(character)} />
+                    <FavoriteIcon size="small" color="primary" onClick={() => handleSaveCharacter(random)} />
                   </IconButton>
                   <IconButton aria-label="add to favorites">
                     <ClearIcon size="small" color="primary" onClick={handleDeleteCharacter} />
@@ -126,10 +125,9 @@ const CharactersList = () => {
 
                 </Card>
               </Grid>
+            </Box>
             )
-          }
-        )
-      }
+      })}
     </div>
   );
 }

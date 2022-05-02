@@ -1,3 +1,4 @@
+import React from "react";
 import { Amplify, AuthModeStrategyType } from 'aws-amplify'
 import ResponsiveAppBar from '../src/components/ResponsiveAppBar'
 import config from '../src/aws-exports'
@@ -34,6 +35,7 @@ const formFields = {
  }
 
 function MyApp({ Component, pageProps}) {
+
   return (
     <Authenticator variation="modal" formFields={formFields}>
       {({ signOut, user }) => (
