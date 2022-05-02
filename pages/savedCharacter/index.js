@@ -75,7 +75,7 @@ const SavedCharacter = () => {
                       component="img"
                       height="450"
                       image={character.img}
-                      alt="Breking Bad Character"
+                      alt={character.nickname}
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h4" component="div">

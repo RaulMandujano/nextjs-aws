@@ -96,7 +96,7 @@ const CharactersList = () => {
                   <CardActionArea key={index}>
                     <CardMedia
                       component="img"
-                      title="Profile Image"
+                      title={random.nickname}
                       height="450"
                       image={random.img}
                       alt="Breking Bad Character"
