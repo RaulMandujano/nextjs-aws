@@ -85,7 +85,7 @@ const CharactersList = () => {
             return (
 
             <Box sx={{ display: "inline", margin: "auto" }}>
-              <Grid key={index}
+              <Grid
               container
               direction="row"
               justifyContent="center"
@@ -93,7 +93,7 @@ const CharactersList = () => {
               >
                 <Card>
                     
-                  <CardActionArea>
+                  <CardActionArea key={index}>
                     <CardMedia
                       component="img"
                       title="Profile Image"

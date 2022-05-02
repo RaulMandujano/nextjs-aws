@@ -86,7 +86,7 @@ const CharactersList = () => {
           characters && characters.map((character, index) => {
 
             return (
-              <Grid key={index}
+              <Grid
               container
               direction="row"
               justifyContent="center"
@@ -94,7 +94,7 @@ const CharactersList = () => {
               >
                 <Card>
                     
-                  <CardActionArea>
+                  <CardActionArea key={index}>
                     <CardMedia
                       component="img"
                       height="450"
