@@ -1,4 +1,4 @@
-Hello, this app was created for my class DGM4790 at UVU. This project is running life on page: 
+Hello, this app was created using NextJS for my class DGM4790 at UVU. This project is running life on page: 
 https://www.breakingbad.link/
 
 ## Getting Started
@@ -21,15 +21,9 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- AWS Cognito used to log in and sign up
+- Open list of characters froom Breaking Bad, data used is from "Breaking Bad Api".
+- AWS Amplify is set up, you are able to save characters in list on a Router.
+- Search bar works to find any character and display data on page.
+- Material UI is being used to design app aparience.
+- Box, Card, Typografies, Buttons, images are exported from MUI
