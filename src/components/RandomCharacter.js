@@ -80,12 +80,12 @@ const CharactersList = () => {
     </Typography>
 
       {
-        randomCharacter && randomCharacter.map((random, index) => {
+        randomCharacter && randomCharacter.map((random) => {
 
             return (
 
             <Box sx={{ display: "inline", margin: "auto" }}>
-              <Grid
+              <Grid key={character.char_id}
               container
               direction="row"
               justifyContent="center"
