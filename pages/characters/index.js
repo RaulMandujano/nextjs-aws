@@ -83,10 +83,10 @@ const CharactersList = () => {
 
 
       {
-          characters && characters.map((character, index) => {
+          characters && characters.map((character) => {
 
             return (
-              <Grid key={index}
+              <Grid
               container
               direction="row"
               justifyContent="center"
