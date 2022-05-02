@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Hello, this app was created for my class DGM4790 at UVU. This project is running life on page: 
+https://www.breakingbad.link/
 
 ## Getting Started
 
