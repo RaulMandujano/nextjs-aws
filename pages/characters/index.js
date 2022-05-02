@@ -66,7 +66,7 @@ const CharactersList = () => {
   React.useEffect (() => {
     loadData();
     console.log(search);
-  }, [search]);
+  }, [search, loadData]);
 
   const loadData = () =>  {
     const url = `https://www.breakingbadapi.com/api/characters${search ? `?name=${search}` : ''}`;
