@@ -22,7 +22,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 ## Learn More
 
 - AWS Cognito used to log in and sign up
-- Open list of characters froom Breaking Bad, data used is from "Breaking Bad Api".
+- Open list of [characters](https://github.com/RaulMandujano/nextjs-aws/blob/main/pages/characters/index.js) from Breaking Bad, data used is from "Breaking Bad Api".
 - AWS Amplify is set up, you are able to save characters in list on a Router.
 - Search bar works to find any character and display data on page.
 - Material UI is being used to design app aparience.
