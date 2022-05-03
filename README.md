@@ -22,8 +22,9 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 ## Learn More
 
 - AWS Cognito used to log in and sign up
-- Open list of [characters](https://github.com/RaulMandujano/nextjs-aws/blob/main/pages/characters/index.js) from Breaking Bad, data used is from "Breaking Bad Api".
-- AWS Amplify is set up, you are able to save characters in list on a Router.
-- Search bar works to find any character and display data on page.
+- Open list of [characters](https://github.com/RaulMandujano/nextjs-aws/blob/main/pages/characters/index.js) from Breaking Bad, [data](https://github.com/RaulMandujano/nextjs-aws/blob/main/pages/api/data.js) used is from "Breaking Bad Api".
+- AWS [Amplify](https://github.com/RaulMandujano/nextjs-aws/tree/main/amplify) is set up, you are able to [save characters](https://github.com/RaulMandujano/nextjs-aws/blob/main/pages/savedCharacter/index.js) in list on a Router.
+- [Search bar](https://github.com/RaulMandujano/nextjs-aws/blob/main/src/components/ResponsiveAppBar.js) works to find any character and display data on page.
 - Material UI is being used to design app aparience.
 - Box, Card, Typografies, Buttons, images are exported from MUI
+- 
