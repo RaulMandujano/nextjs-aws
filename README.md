@@ -27,4 +27,4 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 - [Search bar](https://github.com/RaulMandujano/nextjs-aws/blob/main/src/components/ResponsiveAppBar.js) works to find any character and display data on page.
 - Material UI is being used to design app aparience.
 - Box, Card, Typografies, Buttons, images are exported from MUI
-- 
+
